@@ -2,7 +2,6 @@ package io.github.mktoid.itu;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 
@@ -26,13 +25,11 @@ class StudentController {
 
     @PostMapping("/students")
     Student newStudent(@RequestParam String name, @RequestParam String passport) {
-
-        List<Student> studentsWithGivenPassport = repository.findByPassport(passport);
-
         Student newStudent = new Student();
         newStudent.setName(name.trim());
         newStudent.setPassport(passport.trim());
 
+        List<Student> studentsWithGivenPassport = repository.findByPassport(passport);
         if (studentsWithGivenPassport.size() == 0) {
             return repository.save(newStudent);
         } else {
@@ -48,7 +45,6 @@ class StudentController {
         student.add(linkTo(methodOn(StudentController.class).one(id)).withSelfRel());
         student.add(linkTo(methodOn(StudentController.class).all()).withRel("student"));
         return new ResponseEntity<>(student, HttpStatus.OK);
-
     }
 
     @PutMapping("/students/{id}")
@@ -70,3 +66,4 @@ class StudentController {
         repository.deleteById(id);
     }
 }
+
