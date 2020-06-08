@@ -1,6 +1,5 @@
 package io.github.mktoid.itu;
 
-import org.hibernate.annotations.CollectionId;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
@@ -10,8 +9,11 @@ import javax.persistence.*;
 class Student extends RepresentationModel<Student> {
     @Id
     @GeneratedValue
+    @Column(name="ID")
     private Long id;
+    @Column(name="NAME", length = 128)
     private String name;
+    @Column(name="passport", length = 32)
     private String passport;
 
     public Student() {
