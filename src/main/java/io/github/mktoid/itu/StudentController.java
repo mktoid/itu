@@ -24,6 +24,7 @@ class StudentController {
     }
 
     @PostMapping("/students")
+    @ResponseStatus(HttpStatus.CREATED)
     Student newStudent(@RequestParam String name, @RequestParam String passport) {
         Student newStudent = new Student();
         newStudent.setName(name.trim());
