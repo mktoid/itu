@@ -48,6 +48,7 @@ class StudentController {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/students/{id}")
     Student replaceStudent(@RequestBody Student newStudent, @PathVariable Long id) {
         return repository.findById(id)
@@ -62,6 +63,7 @@ class StudentController {
                 });
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/students/{id}")
     void deleteStudent(@PathVariable Long id) {
         repository.deleteById(id);

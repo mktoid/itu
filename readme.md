@@ -2,7 +2,7 @@
 
 Олег Черемисин
 
-Java 11, Maven 4
+Java 11, Maven 3.6.3
 
 Запуск: mvn spring-boot:run
 
